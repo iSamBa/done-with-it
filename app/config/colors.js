@@ -5,5 +5,6 @@ export default {
   light : '#fff',
   medium: '#6e6969',
   lightGrey: '#f8f4f4',
-  danger: '#ff5252'
+  danger: '#ff5252',
+  warning: '#ffe66d'
 }
