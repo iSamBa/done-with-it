@@ -2,13 +2,12 @@ import React from 'react';
 import {  StyleSheet , View  } from "react-native";
 
 import AppCard from './app/components/AppCard';
+import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <AppCard title="Red jacket for sale !" description="$100" image={require('./app/assets/jacket.jpg')}></AppCard>
-    </View>
-    );
+    <ListingDetailsScreen></ListingDetailsScreen>
+  );
 }
 
 const styles = StyleSheet.create({
