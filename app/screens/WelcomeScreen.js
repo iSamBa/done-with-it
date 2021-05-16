@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     width:"100%",
   },
   tagLine : {
-    fontSize : 18,
+    fontSize : 20,
     fontWeight : "bold",
     marginVertical : 10
   },
