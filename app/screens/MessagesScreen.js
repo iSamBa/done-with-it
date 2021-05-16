@@ -29,16 +29,17 @@ const messages = [
 function MessagesScreen(props) {
   return (
     <Screen>
-    <FlatList  
-      data={messages}
-      keyExtractor={message => message.id.toString()}
-      renderItem={({item})=> <ListItem
-      title={item.title}
-      description = {item.description}
-      image= {item.image}
-      />}
-      ItemSeparatorComponent={ListItemSeparator}
-    />
+      <FlatList  
+        data={messages}
+        keyExtractor={message => message.id.toString()}
+        renderItem={({item})=> <ListItem
+        title={item.title}
+        description = {item.description}
+        image= {item.image}
+        onPress={()=>console.log("Message pressed" , item)}
+        />}
+        ItemSeparatorComponent={ListItemSeparator}
+      />
     </Screen>
   );
 }
