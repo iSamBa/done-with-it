@@ -1,12 +1,16 @@
 import React from 'react';
-import {  StyleSheet  } from "react-native";
+import {  StyleSheet, StatusBar, View  } from "react-native";
+import Screen from './app/components/Screen';
 
-import ListingScreen from './app/screens/ListingScreen';
+import AccountScreen from './app/screens/AccountScreen';
 
 
 export default function App() {
   return (
-    <ListingScreen />
+    <Screen>
+      <StatusBar barStyle="dark-content" />
+      <AccountScreen />
+    </Screen>
     );
 }
 

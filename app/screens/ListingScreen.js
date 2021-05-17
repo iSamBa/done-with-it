@@ -21,7 +21,6 @@ const items = [
 ]
 
 function ListingScreen(props) {
-
   return (
     <Screen style={styles.container}>
       <FlatList

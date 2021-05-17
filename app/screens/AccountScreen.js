@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import AccountItem from '../components/AccountItem';
-import ListItem from '../components/ListItem';
 
+import IconItem from '../components/IconItem';
+import ListItem from '../components/ListItem';
 import Screen from '../components/Screen';
 import colors from '../config/colors'
 
@@ -18,22 +18,19 @@ function AccountScreen(props) {
         />
       </View>
       <View style={styles.section}>
-        <AccountItem 
+        <ListItem 
         title="My Listings"
-        iconName="format-list-bulleted"
-        iconColor="primary"
+        ImageComponent={<IconItem iconName="format-list-bulleted" backgroundColor="primary" />}
         />
-        <AccountItem 
-        title="My Messages"
-        iconName="email"
-        iconColor="secondary"
+        <ListItem 
+        title="My messages"
+        ImageComponent={<IconItem iconName="email" backgroundColor="secondary" />}
         />
       </View>
       <View style={styles.section}>
-        <AccountItem 
+        <ListItem 
         title="Log Out"
-        iconName="logout"
-        iconColor="warning"
+        ImageComponent={<IconItem iconName="logout" backgroundColor="warning" />}
         />
       </View>
     </Screen>
