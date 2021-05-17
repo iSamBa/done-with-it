@@ -1,11 +1,28 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 
 import IconItem from '../components/IconItem';
 import ListItem from '../components/ListItem';
 import Screen from '../components/Screen';
+import ListItemSeparator from '../components/ListItemSeparator';
 import colors from '../config/colors'
 
+const menuItems = [
+  {
+    title : "My Listings",
+    icon : {
+      name : 'format-list-bulleted',
+      backgroundColor: 'primary'
+    }
+  },
+  {
+    title : "My Messages",
+    icon : {
+      name : 'email',
+      backgroundColor: 'secondary'
+    }
+  },
+]
 
 function AccountScreen(props) {
   return (
@@ -18,13 +35,17 @@ function AccountScreen(props) {
         />
       </View>
       <View style={styles.section}>
-        <ListItem 
-        title="My Listings"
-        ImageComponent={<IconItem iconName="format-list-bulleted" backgroundColor="primary" />}
-        />
-        <ListItem 
-        title="My messages"
-        ImageComponent={<IconItem iconName="email" backgroundColor="secondary" />}
+        <FlatList 
+          data={menuItems}
+          keyExtractor = {item => item.title}
+          renderItem = {({item}) => <ListItem 
+            title = {item.title}
+            ImageComponent= {<IconItem
+              iconName={item.icon.name}
+              backgroundColor = {item.icon.backgroundColor}
+              />}
+          />}
+          ItemSeparatorComponent = {ListItemSeparator}
         />
       </View>
       <View style={styles.section}>
@@ -43,7 +64,7 @@ const styles = StyleSheet.create({
   },
   section:{
     backgroundColor: colors.light,
-    marginVertical: 15
+    marginVertical: 20
   },
 })
 
