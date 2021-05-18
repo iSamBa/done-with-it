@@ -4,13 +4,14 @@ import AppTextInput from './app/components/AppTextInput';
 import Screen from './app/components/Screen';
 
 import AccountScreen from './app/screens/AccountScreen';
+import AppPicker from './app/components/AppPicker'
 
 
 export default function App() {
   return (
     <Screen>
       <StatusBar barStyle="dark-content" />
-      <AppTextInput icon="email" placeholder="Email"/>
+      <AppPicker/>
     </Screen>
     );
 }
