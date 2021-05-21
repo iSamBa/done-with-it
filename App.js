@@ -11,7 +11,7 @@ export default function App() {
   return (
     <Screen>
       <StatusBar barStyle="dark-content" />
-      <AppPicker/>
+      <AppPicker icon="apps" placeholder="Category"/>
     </Screen>
     );
 }

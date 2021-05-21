@@ -1,25 +1,35 @@
-import React, { useState } from 'react';
-import { Picker } from '@react-native-picker/picker';
-import { View } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-function AppPicker(props) {
-  const [selectedLanguage, setSelectedLanguage] = useState();
+import defaultStyles from '../config/styles'
+import AppText from './AppText'
 
+function AppPicker({icon, placeholder, ...otherProps}) {
   return (
-    <View>
-      <Picker
-        selectedValue={selectedLanguage}
-        onValueChange={(itemValue, itemIndex) =>
-        setSelectedLanguage(itemValue)
-      }>
-      <Picker.Item label="Java" value="java" />
-      <Picker.Item label="JavaScript" value="js" />
-      <Picker.Item label="C" value="c" />
-      <Picker.Item label="C++" value="cpp" />
-      <Picker.Item label="C#" value="csharp" />
-      </Picker>
+    <View style={styles.container}>
+      { icon && <MaterialCommunityIcons style={styles.icon} name={icon} size={20} color={defaultStyles.colors.darkGrey} />}
+      <AppText style={styles.text}>{ placeholder }</AppText>
+      <MaterialCommunityIcons name="chevron-down" size={20} color={defaultStyles.colors.darkGrey} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: defaultStyles.colors.lightGrey,
+    borderRadius: 25,
+    flexDirection: 'row',
+    marginVertical: 10,
+    padding : 20,
+    width: '100%'
+  },
+  icon: {
+    marginRight : 10
+  },
+  text: {
+    flex: 1
+  }
+})
 
 export default AppPicker;
