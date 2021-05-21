@@ -7,14 +7,14 @@ import AppText from './AppText'
 import Screen from './Screen';
 import PickerItem from './PickerItem';
 
-function AppPicker({ icon, items,onSelectItem, placeholder, selectedItem }) {
+function AppPicker({ icon, items,onSelectItem, placeholder, selectedItem, style }) {
   const [modalVisible, setModalVisible] = useState(false)
   return (
     <React.Fragment>
       <TouchableWithoutFeedback onPress={()=>setModalVisible(true)}>
         <View style={styles.container}>
           { icon && <MaterialCommunityIcons style={styles.icon} name={icon} size={20} color={defaultStyles.colors.darkGrey} />}
-          <AppText style={styles.text}>{ selectedItem ? selectedItem.label : placeholder }</AppText>
+          { selectedItem ? <AppText style={styles.text}>{selectedItem}</AppText> : <AppText style={styles.placeholder}>{placeholder}</AppText>}
           <MaterialCommunityIcons name="chevron-down" size={20} color={defaultStyles.colors.darkGrey} />
         </View>
       </TouchableWithoutFeedback>
@@ -49,6 +49,10 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight : 10
+  },
+  placeholder:{
+    color: defaultStyles.colors.medium,
+    flex: 1
   },
   text: {
     flex: 1

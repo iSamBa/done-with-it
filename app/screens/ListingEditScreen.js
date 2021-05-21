@@ -8,7 +8,7 @@ import Screen from '../components/Screen'
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label('Title'),
   price: Yup.number().required().min(1).max(10000).label('Price'),
-  category: Yup.string().required().nullable().label('Category'),
+  category: Yup.object().required().nullable().label('Category'),
   description: Yup.string().label('Description')
 })
 
@@ -17,15 +17,18 @@ function ListingEditScreen() {
   return (
     <Screen style={styles.container}>
       <AppForm
-        initialValues={{title:'', price:1, category:'', description:''}}
+        initialValues={{title:'', price:'', category:null, description:''}}
         onSubmit={values => console.log(values)}
         validationSchema={validationSchema}
         >
         <AppFormField 
+          maxLength={255}
           name="title"
           placeholder="Title"
           />
         <AppFormField 
+          keyboardType="numeric"
+          maxLength={8}
           name="price"
           placeholder="Price"
           />
@@ -33,11 +36,12 @@ function ListingEditScreen() {
           items={[{label: "Fourniture", value: 1},{label: "Clothing", value: 2},]}
           placeholder="Category"
           name="category"
-          selectedItem={selectedCategory}
-          onSelectItem={item => setSelectedCategory(item)}
         />
         <AppFormField 
+          maxLength={255}
+          multiline
           name="description"
+          numberOfLines={3}
           placeholder="Description"
           />
         <SubmitButton title="post"/>
