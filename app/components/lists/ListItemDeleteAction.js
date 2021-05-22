@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import colors from '../config/colors'
+import defaultStyles from '../../config/styles'
 
 function ListItemDeleteAction({onPress}) {
   return (
@@ -11,7 +11,7 @@ function ListItemDeleteAction({onPress}) {
         <MaterialCommunityIcons 
           name="trash-can"
           size={32}
-          color={colors.light}
+          color={defaultStyles.colors.light}
           />
     </View>
     </TouchableWithoutFeedback>
@@ -21,7 +21,7 @@ function ListItemDeleteAction({onPress}) {
 const styles = StyleSheet.create({
   container:{
     alignItems:'center',
-    backgroundColor: colors.danger,
+    backgroundColor: defaultStyles.colors.danger,
     justifyContent:'center',
     width: 70,
   }

@@ -3,7 +3,7 @@ import { FlatList, StyleSheet } from 'react-native';
 
 import Screen from '../components/Screen';
 import AppCard from '../components/AppCard';
-import colors from '../config/colors';
+import defaultStyles from '../config/styles';
 
 const items = [
   {
@@ -39,7 +39,7 @@ function ListingScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.lightGrey,
+    backgroundColor: defaultStyles.colors.lightGrey,
   },
   list: {
     padding : 20

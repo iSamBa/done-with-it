@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { StyleSheet } from 'react-native'
 import * as Yup from 'yup'
 
@@ -12,13 +12,18 @@ const validationSchema = Yup.object().shape({
   description: Yup.string().label('Description')
 })
 
+const categories = [
+  {label:'Furniture', value: 1},
+  {label:'Clothing', value: 2},
+  {label:'Cameras', value: 3}
+]
+
 function ListingEditScreen() {
-  const [selectedCategory, setSelectedCategory] = useState()
   return (
     <Screen style={styles.container}>
       <AppForm
         initialValues={{title:'', price:'', category:null, description:''}}
-        onSubmit={values => console.log(values)}
+        onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
         >
         <AppFormField 
@@ -33,7 +38,7 @@ function ListingEditScreen() {
           placeholder="Price"
           />
         <AppFormPicker 
-          items={[{label: "Fourniture", value: 1},{label: "Clothing", value: 2},]}
+          items={categories}
           placeholder="Category"
           name="category"
         />

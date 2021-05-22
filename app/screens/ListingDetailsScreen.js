@@ -2,10 +2,10 @@ import React from 'react';
 import {  Image, StyleSheet, View } from 'react-native';
 
 import AppText from '../components/AppText';
-import ListItem from '../components/ListItem';
-import colors from '../config/colors';
+import ListItem from '../components/lists/ListItem';
+import defaultStyles from '../config/styles';
 
-function ListingDetailsScreen(props) {
+function ListingDetailsScreen() {
   return (
   <View>
     <Image style={styles.image} source={require('../assets/jacket.jpg')}></Image>
@@ -16,7 +16,7 @@ function ListingDetailsScreen(props) {
       <ListItem 
         image={require("../assets/mosh.jpg")}
         title="Mosh"
-        subTitle="5 Listings" 
+        description="5 Listings" 
         />
       </View>
     </View>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     height : 300
   },
   price: {
-    color : colors.secondary,
+    color : defaultStyles.colors.secondary,
     fontSize : 20,
     fontWeight : 'bold',
     marginVertical : 10,
