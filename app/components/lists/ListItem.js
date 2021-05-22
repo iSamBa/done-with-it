@@ -14,8 +14,8 @@ function ListItem({title, description, image, ImageComponent, onPress, renderRig
         { ImageComponent }
         { image && <Image style={styles.image} source={image} />}
         <View style={styles.detailsContainer}>
-          <AppText style={styles.title}>{title}</AppText>
-          { description && <AppText style={styles.description}>{description}</AppText>}
+          <AppText numberOfLines={1} style={styles.title}>{title}</AppText>
+          { description && <AppText numberOfLines={2} style={styles.description}>{description}</AppText>}
         </View>
         <MaterialCommunityIcons name="chevron-right" size={25} color={defaultStyles.colors.medium} />
       </View>
