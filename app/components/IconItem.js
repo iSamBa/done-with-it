@@ -13,7 +13,7 @@ function IconItem({
  }) {
   return (
     <View style={[styles.icon, style, {
-      backgroundColor: colors[backgroundColor],
+      backgroundColor: colors[backgroundColor] ? colors[backgroundColor] : backgroundColor,
       height: size,
       width: size,
       borderRadius: size/2
