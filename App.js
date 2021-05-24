@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import{ Image, StatusBar } from 'react-native';
 import * as ImagePicker from 'expo-image-picker'
 
 import Screen from './app/components/Screen'
-import { Button, Image } from 'react-native';
+import AppImageInput from './app/components/AppImageInput';
 
 export default function App() {
-  const [imageUri, setimageUri] = useState()
+  const [imageUri, setImageUri] = useState()
   
-  const selectImage = async() => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync()
-      if (!result.cancelled) setimageUri(result.uri)
-    } catch (error) {
-     console.log('Error while getting the image', error) 
-    }
-  }
-
   const requestPermission = async () => {
     const {granted} = await ImagePicker.requestMediaLibraryPermissionsAsync()
     if (!granted) alert('In order to fully use the application, we need access to the library')
@@ -24,8 +16,14 @@ export default function App() {
 
   return (
     <Screen>
-      <Button title="Select image" onPress={selectImage}></Button>
-      <Image source={{uri: imageUri}} style={{width: 200, height: 200}}></Image>
+      <StatusBar
+        barStyle='dark-content'
+      />
+      <AppImageInput
+        imageUri={imageUri}
+        onChangeImage={ (uri) => setImageUri(uri) }
+      />
+      <Image source={{uri: imageUri}} />
     </Screen>
     );
 }
