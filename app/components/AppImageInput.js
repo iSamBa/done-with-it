@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback, Image, ImageBackground } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback, Image, ImageBackground, Alert } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import * as ImagePicker from 'expo-image-picker'
 
@@ -8,40 +8,49 @@ import defaultStyles from '../config/styles'
 
 function AppImageInput({imageUri, onChangeImage}) {
 
-  const selectImage = async() => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync()
-      if (!result.cancelled) {
-        onChangeImage(result.uri)
-      } 
-    } catch (error) {
-     console.log('Error while getting the image', error) 
+  const handlePress = () => {
+    if(!imageUri) selectImage()
+    else {
+      Alert.alert("Delete", "Are you sure you want to delete this image ?", [
+        {text : "Yes", style: "cancel", onPress:()=>onChangeImage(null)},
+        {text: 'No'}
+      ])
     }
   }
 
+  const selectImage = async() => {
+      try {
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          quality: 0.5
+        })
+        if (!result.cancelled)  onChangeImage(result.uri)
+      } catch (error) {
+        console.log('Error while getting the image', error) 
+      }
+  }
+
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-      { imageUri && 
-          <Image style={styles.image} source={{uri :imageUri}} />
-      } 
-      { !imageUri && (
-        <TouchableWithoutFeedback onPress={() => selectImage()}>
-            <MaterialCommunityIcons
-              color={defaultStyles.colors.darkGrey}
-              name="camera"
-              size={30}
-              />
-        </TouchableWithoutFeedback>
-      ) }
+    <TouchableWithoutFeedback onPress={handlePress}>
+      <View style={styles.container}>
+        { imageUri && 
+            <Image style={styles.image} source={{uri :imageUri}} />
+        } 
+        { !imageUri && 
+              <MaterialCommunityIcons
+                color={defaultStyles.colors.darkGrey}
+                name="camera"
+                size={30}
+                />
+        }
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
-  imageContainer: {
+
+  container: {
     alignItems: 'center',
     backgroundColor: defaultStyles.colors.lightGrey,
     borderRadius: 15,
