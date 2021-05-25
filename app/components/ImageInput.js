@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, TouchableWithoutFeedback, Image, ImageBackground, Alert } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import * as ImagePicker from 'expo-image-picker'
@@ -6,18 +6,21 @@ import * as ImagePicker from 'expo-image-picker'
 import defaultStyles from '../config/styles'
 
 
-function AppImageInput({imageUri, onChangeImage}) {
-
+function ImageInput({imageUri, onChangeImage}) {
+  const requestPermission = async () => {
+    const {granted} = await ImagePicker.requestMediaLibraryPermissionsAsync()
+    if (!granted) alert('In order to fully use the application, we need access to the library')
+  }
+  useEffect(() => {requestPermission()}, [])
   const handlePress = () => {
     if(!imageUri) selectImage()
     else {
       Alert.alert("Delete", "Are you sure you want to delete this image ?", [
-        {text : "Yes", style: "cancel", onPress:()=>onChangeImage(null)},
+        {text : "Yes", style: "cancel", onPress:()=>onChangeImage(imageUri)},
         {text: 'No'}
       ])
     }
   }
-
   const selectImage = async() => {
       try {
         const result = await ImagePicker.launchImageLibraryAsync({
@@ -49,7 +52,6 @@ function AppImageInput({imageUri, onChangeImage}) {
 }
 
 const styles = StyleSheet.create({
-
   container: {
     alignItems: 'center',
     backgroundColor: defaultStyles.colors.lightGrey,
@@ -65,4 +67,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppImageInput;
+export default ImageInput;

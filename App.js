@@ -3,27 +3,25 @@ import{ Image, StatusBar } from 'react-native';
 import * as ImagePicker from 'expo-image-picker'
 
 import Screen from './app/components/Screen'
-import AppImageInput from './app/components/AppImageInput';
+import ImageInputList from './app/components/ImageInputList';
 
 export default function App() {
-  const [imageUri, setImageUri] = useState()
+  const [imageUris, setImageUris] = useState([])
   
-  const requestPermission = async () => {
-    const {granted} = await ImagePicker.requestMediaLibraryPermissionsAsync()
-    if (!granted) alert('In order to fully use the application, we need access to the library')
-  }
-  useEffect(() => {requestPermission()}, [])
-
+  const handleAddImage = uri => setImageUris([...imageUris, uri])
+  
+  const handleRemoveImage = uri => setImageUris(imageUris.filter(imageUri => imageUri !== uri ))
+ 
   return (
     <Screen>
       <StatusBar
         barStyle='dark-content'
       />
-      <AppImageInput
-        imageUri={imageUri}
-        onChangeImage={ (uri) => setImageUri(uri) }
+      <ImageInputList
+        imageUris={imageUris}
+        onAddImage={handleAddImage}
+        onRemoveImage={handleRemoveImage}
       />
-      <Image source={{uri: imageUri}} />
     </Screen>
     );
 }
