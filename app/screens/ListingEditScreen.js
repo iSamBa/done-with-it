@@ -75,19 +75,17 @@ const categories = [
 
 function ListingEditScreen() {
 
-  const [userLocation, setUserLocation ] = useState({});
+  const [userLocation, setUserLocation ] = useState();
 
-  const getUserPermission = async() => {
-    const { granted } = await Location.getBackgroundPermissionsAsync();
+  const getLocation = async() => {
+    const { granted } = await Location.requestForegroundPermissionsAsync();
     if (!granted) return;
-    else {
-      const {coords: {latitude, longitude}} = await Location.getLastKnownPositionAsync();
-      setUserLocation({latitude, longitude})
-    }
+    const { coords : { latitude, longitude}} = await Location.getLastKnownPositionAsync();
+    setUserLocation({ latitude, longitude})
   }
 
   useEffect(() => {
-    getUserPermission()
+    getLocation()
   }, [])
 
   return (
