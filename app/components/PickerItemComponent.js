@@ -1,14 +1,16 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import AppText from './AppText';
 
 import IconItem from './IconItem'
 
 function PickerItemComponent({item, onPress}) {
-  return (
+ return (
     <View style={styles.container}>
-      <IconItem backgroundColor={item.backgroundColor} iconName={item.icon} size={80}/>
-      <AppText style={styles.label}>{item.label}</AppText>
+     <TouchableOpacity onPress={onPress}>
+        <IconItem backgroundColor={item.backgroundColor} iconName={item.icon} size={80}/>
+        <AppText style={styles.label}>{item.label}</AppText>
+      </TouchableOpacity>
     </View>
   )
 }

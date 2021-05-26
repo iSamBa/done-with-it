@@ -15,8 +15,9 @@ function AppPicker({ icon, items, numberOfColumns=1, onSelectItem, PickerItemCom
         <View style={[styles.container, {width}]}>
           { icon && <MaterialCommunityIcons style={styles.icon} name={icon} size={20} color={defaultStyles.colors.darkGrey} />}
           { 
-          selectedItem ? 
-          <AppText style={styles.text}> { selectedItem } </AppText> 
+          selectedItem ? ( 
+          <AppText style={styles.text}> { selectedItem.label } </AppText> 
+          )
           : 
           <AppText style={styles.placeholder}> { placeholder } </AppText>
           }
@@ -30,13 +31,13 @@ function AppPicker({ icon, items, numberOfColumns=1, onSelectItem, PickerItemCom
             data={items}
             keyExtractor={item => item.value.toString()}
             numColumns={numberOfColumns}
-            renderItem={({ item }) => <PickerItemComponent
+            renderItem={({ item }) => (<PickerItemComponent
               item={item}
               onPress={() => {
                 setModalVisible(false)
                 onSelectItem(item)
               }}
-            />}
+            />)}
           />
         </Screen>
       </Modal>

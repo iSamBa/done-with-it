@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import * as Yup from 'yup'
+import * as Location from 'expo-location'
 
 import {  AppForm, AppFormField, AppFormPicker, SubmitButton } from '../components/forms'
 import FormImagePicker from '../components/forms/FormImagePicker'
@@ -73,11 +74,27 @@ const categories = [
 ];
 
 function ListingEditScreen() {
+
+  const [userLocation, setUserLocation ] = useState({});
+
+  const getUserPermission = async() => {
+    const { granted } = await Location.getBackgroundPermissionsAsync();
+    if (!granted) return;
+    else {
+      const {coords: {latitude, longitude}} = await Location.getLastKnownPositionAsync();
+      setUserLocation({latitude, longitude})
+    }
+  }
+
+  useEffect(() => {
+    getUserPermission()
+  }, [])
+
   return (
     <Screen style={styles.container}>
       <AppForm
         initialValues={{title:'', price:'', category:null, description:'', images:[]}}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => console.log(userLocation)}
         validationSchema={validationSchema}
         >
         <FormImagePicker name="images" />
@@ -94,10 +111,10 @@ function ListingEditScreen() {
           />
         <AppFormPicker 
           items={categories}
+          name="category"
           numberOfColumns={3}
           placeholder="Category"
           PickerItemComponent={PickerItemComponent}
-          name="category"
         />
         <AppFormField 
           maxLength={255}
