@@ -1,16 +1,13 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import AuthNavigator from './app/navigation/AuthNavigator';
-
-
-
+import navigationTheme from './app/navigation/navigationTheme';
 
 
 export default function App() {
   
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navigationTheme}>
      <AuthNavigator />
     </NavigationContainer>
     );
