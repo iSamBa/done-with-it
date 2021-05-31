@@ -5,6 +5,8 @@ import Screen from '../components/Screen';
 import AppCard from '../components/AppCard';
 import defaultStyles from '../config/styles';
 
+import routes from '../navigation/routes'
+
 const items = [
   {
     id: 1,
@@ -31,7 +33,7 @@ function ListingScreen({ navigation }) {
           title={item.title}
           description={"$" + item.price}
           image={item.image}
-          onPress={()=> navigation.navigate('ListingDetails', item)}
+          onPress={()=> navigation.navigate(routes.LISTING_DETAILS, item)}
         />}
       />
     </Screen>

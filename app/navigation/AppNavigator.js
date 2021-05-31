@@ -6,19 +6,20 @@ import AccountNavigator from './AccountNavigator'
 import FeedNavigator from './FeedNavigator'
 import ListingEditScreen from '../screens/ListingEditScreen'
 import NewListingButton from './NewListingButton'
+import routes from './routes'
 
 const Tab = createBottomTabNavigator ();
 
 const AppNavigator = () => (
      <Tab.Navigator >
-        <Tab.Screen name="Feed" component={FeedNavigator}
+        <Tab.Screen name={routes.FEED} component={FeedNavigator}
             options={{
                 tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="home" color={color} size={size}/>
             }}/>
-        <Tab.Screen name="ListingEdit" component={ListingEditScreen} options={({navigation}) => ({
+        <Tab.Screen name={routes.LISTING_EDIT} component={ListingEditScreen} options={({navigation}) => ({
             tabBarButton: () => (<NewListingButton onPress={ () => navigation.navigate('ListingEdit') }/>)
         })} />
-        <Tab.Screen name="Account" component={AccountNavigator}
+        <Tab.Screen name={routes.ACCOUNT} component={AccountNavigator}
              options={{
                 tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="account" color={color} size={size}/>
             }}/>
