@@ -5,13 +5,13 @@ import AppText from '../components/AppText';
 import ListItem from '../components/lists/ListItem';
 import defaultStyles from '../config/styles';
 
-function ListingDetailsScreen() {
+function ListingDetailsScreen({ route }) {
   return (
   <View>
-    <Image style={styles.image} source={require('../assets/jacket.jpg')}></Image>
+    <Image style={styles.image} source={ route.params.image }></Image>
     <View style={styles.detailsContainer}>
-      <AppText style={styles.title}>Red jacket for sale</AppText>
-      <AppText style={styles.price}>$100</AppText>
+        <AppText style={styles.title}>{ route.params.title }</AppText>
+        <AppText style={styles.price}>${ route.params.price }</AppText>
       <View style={styles.userContainer}>
       <ListItem 
         image={require("../assets/mosh.jpg")}
