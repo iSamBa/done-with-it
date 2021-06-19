@@ -6,7 +6,7 @@ import colors from './../config/colors'
 function AppButton({title, onPress, color = 'primary'}) {
   return (
     <TouchableOpacity style={[styles.loginButton, {backgroundColor: colors[color]}]} onPress={onPress}>
-      <Text style={styles.buttonText}>{title}</Text>
+        <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   );
 }

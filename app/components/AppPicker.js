@@ -33,7 +33,7 @@ function AppPicker({ icon, items, numberOfColumns=1, onSelectItem, PickerItemCom
             numColumns={numberOfColumns}
             renderItem={({ item }) => (<PickerItemComponent
               item={item}
-              onPress={() => {
+              onPress={ () => {
                 setModalVisible(false)
                 onSelectItem(item)
               }}
